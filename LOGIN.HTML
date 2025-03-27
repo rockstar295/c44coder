@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My C4schaools - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(200deg, #171817, #16412b);
+            text-align: center;
+        }
+        /* Header */
+        
+        header {
+            background: linear-gradient(145deg, #0e0f0f, #131414);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        /* Welcome Section */
+        
+        .welcome {
+            margin: 100px 0;
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 100px;
+        }
+        /* Typing Animation */
+        
+        #typing-text {
+            font-size: 30px;
+            font-weight: bold;
+            color: #dcebe5;
+            display: inline-block;
+            border-right: 3px solid black;
+            padding-right: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        /* Subjects Container */
+        
+        .login-container {
+            background: linear-gradient(145deg, #161f41, #233658);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 550px;
+            padding: 30px;
+            text-align: center;
+            margin: auto;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            margin-bottom: 30px;
+            color: #f1f4f7;
+        }
+        
+        .logoo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #fefeff;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            box-shadow: 5px 5px 10px rgba(13, 23, 34, 0.3), inset -3px -3px 5px rgba(64, 76, 102, 0.2);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #d5d9df;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #1c4f80;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            background: #0a152c;
+            color: #c6d4dd;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .login-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .divider {
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .divider:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        
+        .divider span {
+            background-color: white;
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+            color: #7f8c8d;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .social-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        img {
+            width: x;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .google {
+            background-color: #ece7e7;
+            color: white;
+        }
+        
+        .facebook {
+            background-color: #e7ebf1;
+            color: white;
+        }
+        
+        .apple {
+            background-color: #000000;
+            color: white;
+        }
+        
+        .forgot-password {
+            display: block;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .signup-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            color: #bfccd4;
+            background: #faf8f8;
+        }
+    </style>
+</head>
+
+<body background="black">
+    <style>
+        body {
+            background: radial-gradient(circle at center, #000000 0%, #0a0a2e 70%, #1a1a4a 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .galaxy-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: pulse 8s infinite alternate;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: rgb(211, 120, 34);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        // Create random stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random size between 1px to 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                // Random position
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+
+                // Random animation duration
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+
+                body.appendChild(star);
+            }
+        });
+    </script>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">C<sup>4</sup>C0DE®</div>
+        <nav>
+            <a href="#">Tutorials</a>
+            <a href="#">Exercises</a>
+            <a href="#">Certificates</a>
+            <a href="index.html">HOME</a>
+        </nav>
+    </header>
+
+    <div class="login-container">
+        <div class="logoo">C<sup>4</sup>C0DE®</div>
+
+        <h1>Welcome Back</h1>
+
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="email">Email or Username</label>
+                <input type="text" id="email" name="email" placeholder="Enter your email or username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <a href="/forgot-password" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+
+        <div class="divider">
+            <span>OR</span>
+        </div>
+
+        <div class="social-login">
+            <div class="social-btn google" title="Login with Google">
+                <img src="goo.png">
+            </div>
+            <div class="social-btn facebook" title="Login with Facebook">
+                <img src="fac.png">
+            </div>
+            <div class="social-btn apple" title="Login with Apple">
+                <img src="git.png">
+            </div>
+        </div>
+        <div class="signup-link">
+            Don't have an account? <a href="/signup">Sign up</a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

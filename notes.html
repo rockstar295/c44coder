@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My C4schaools - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(200deg, #171817, #16412b);
+            text-align: center;
+        }
+        /* Header */
+        
+        header {
+            background: linear-gradient(145deg, #0e0f0f, #131414);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+        
+        .subjects-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1px;
+            perspective: 1000px;
+            margin: 0px;
+        }
+        
+        .subjects-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 1px;
+            perspective: 1000px;
+            margin-left: 0px;
+        }
+        
+        .subject-box {
+            width: 180px;
+            height: 40px;
+            background: linear-gradient(145deg, #191d30, #233658);
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            border-radius: 0px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+            margin: 1px;
+            font-size: 24px;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        .subject-box:hover {
+            background: linear-gradient(200deg, #2f3138, #222936);
+            box-shadow: 0 15px 30px rgba(11, 10, 87, 0.6);
+            color: #e4f7ef;
+        }
+        /* Notes container */
+        
+        .notes-container {
+            display: none;
+            background: rgba(25, 29, 48, 0.9);
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        
+        .notes-container h2 {
+            color: #4fc3f7;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #4fc3f7;
+            padding-bottom: 10px;
+        }
+        
+        .notes-container p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            color: #ff5252;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .active-subject {
+            background: linear-gradient(200deg, #4fc3f7, #1976d2) !important;
+            transform: translateY(-5px);
+        }
+        
+        .subject-box a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body background="black">
+    <style>
+        body {
+            background: radial-gradient(circle at center, #000000 0%, #0a0a2e 70%, #1a1a4a 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow: auto;
+            position: relative;
+        }
+        
+        .galaxy-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: pulse 8s infinite alternate;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: rgb(211, 120, 34);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <script>
+        // Create random stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random size between 1px to 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                // Random position
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+
+                // Random animation duration
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+
+                body.appendChild(star);
+            }
+        });
+
+        // Notes content for each subject
+
+        const notesContent = {
+            html: {
+                title: "HTML Complete Reference",
+                content: `
+                    <h1>Complete HTML Reference Guide</h1>
+                    
+                    <section class="intro">
+                        <h2>Introduction to HTML</h2>
+                        <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications. It provides the structure of a webpage, while CSS handles presentation and JavaScript adds interactivity.</p>
+                        
+                        <div class="note">
+                            <strong>HTML Version:</strong> The current standard is HTML5, which introduced many new semantic elements and APIs.
+                        </div>
+                    </section>
+        
+                    <section class="basic-structure">
+                        <h2>Basic HTML Structure</h2>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+            &lt;title&gt;Document Title&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Main Heading&lt;/h1&gt;
+            &lt;p&gt;A paragraph of text.&lt;/p&gt;
+        &lt;/body&gt;
+        &lt;/html&gt;</code></pre>
+                        
+                        <h3>Structure Elements Explained:</h3>
+                        <ul>
+                            <li><strong>&lt;!DOCTYPE html&gt;</strong> - Declares HTML5 document type</li>
+                            <li><strong>&lt;html&gt;</strong> - Root element with lang attribute for language</li>
+                            <li><strong>&lt;head&gt;</strong> - Contains meta information, title, and links to resources</li>
+                            <li><strong>&lt;body&gt;</strong> - Contains all visible content</li>
+                        </ul>
+                    </section>
+        
+                    <section class="text-elements">
+                        <h2>Text Formatting Elements</h2>
+                        
+                        <div class="example">
+                            <h3>Headings Example:</h3>
+                            <pre><code>&lt;h1&gt;Main Title&lt;/h1&gt;  &lt;!-- Most important - only one per page --&gt;
+        &lt;h2&gt;Section Heading&lt;/h2&gt;
+        &lt;h3&gt;Subheading&lt;/h3&gt;
+        &lt;h4&gt;Smaller Heading&lt;/h4&gt;
+        &lt;h5&gt;Minor Heading&lt;/h5&gt;
+        &lt;h6&gt;Least Important&lt;/h6&gt;</code></pre>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Paragraphs and Text Formatting:</h3>
+                            <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+        &lt;p&gt;Another paragraph with &lt;strong&gt;bold text&lt;/strong&gt; and &lt;em&gt;italic text&lt;/em&gt;.&lt;/p&gt;
+        &lt;p&gt;Chemical formula: H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+        &lt;p&gt;E=mc&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;mark&gt;Highlighted text&lt;/mark&gt; and &lt;del&gt;deleted text&lt;/del&gt;&lt;/p&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="lists">
+                        <h2>HTML Lists</h2>
+                        
+                        <div class="example">
+                            <h3>Unordered List (Bullet Points):</h3>
+                            <pre><code>&lt;ul&gt;
+            &lt;li&gt;First item&lt;/li&gt;
+            &lt;li&gt;Second item&lt;/li&gt;
+            &lt;li&gt;Third item with nested list:
+                &lt;ul&gt;
+                    &lt;li&gt;Nested item 1&lt;/li&gt;
+                    &lt;li&gt;Nested item 2&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;</code></pre>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Ordered List (Numbered):</h3>
+                            <pre><code>&lt;ol type="A" start="3"&gt;
+            &lt;li&gt;First item (labeled C)&lt;/li&gt;
+            &lt;li&gt;Second item (D)&lt;/li&gt;
+            &lt;li&gt;Third item (E)&lt;/li&gt;
+        &lt;/ol&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="links-images">
+                        <h2>Links and Images</h2>
+                        
+                        <div class="example">
+                            <h3>Anchor Tags (Links):</h3>
+                            <pre><code>&lt;!-- External link --&gt;
+        &lt;a href="https://example.com" target="_blank" rel="noopener noreferrer"&gt;
+            Visit Example
+        &lt;/a&gt;
+        
+        &lt;!-- Internal link --&gt;
+        &lt;a href="#section-id"&gt;Jump to Section&lt;/a&gt;
+        
+        &lt;!-- Email link --&gt;
+        &lt;a href="mailto:contact@example.com"&gt;Email Us&lt;/a&gt;
+        
+        &lt;!-- Telephone link --&gt;
+        &lt;a href="tel:+1234567890"&gt;Call Us&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Images:</h3>
+                            <pre><code>&lt;img src="image.jpg" alt="Descriptive text" width="400" height="300" 
+             loading="lazy" srcset="image-small.jpg 480w, image-large.jpg 1080w"
+             sizes="(max-width: 600px) 480px, 1080px"&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="tables">
+                        <h2>HTML Tables</h2>
+                        
+                        <div class="example">
+                            <pre><code>&lt;table&gt;
+            &lt;caption&gt;Monthly Sales Report&lt;/caption&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th scope="col"&gt;Month&lt;/th&gt;
+                    &lt;th scope="col"&gt;Sales&lt;/th&gt;
+                    &lt;th scope="col"&gt;Profit&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;th scope="row"&gt;January&lt;/th&gt;
+                    &lt;td&gt;$10,000&lt;/td&gt;
+                    &lt;td&gt;$2,000&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th scope="row"&gt;February&lt;/th&gt;
+                    &lt;td&gt;$12,000&lt;/td&gt;
+                    &lt;td&gt;$3,000&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+            &lt;tfoot&gt;
+                &lt;tr&gt;
+                    &lt;th scope="row"&gt;Total&lt;/th&gt;
+                    &lt;td&gt;$22,000&lt;/td&gt;
+                    &lt;td&gt;$5,000&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tfoot&gt;
+        &lt;/table&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="forms">
+                        <h2>HTML Forms</h2>
+                        
+                        <div class="example">
+                            <pre><code>&lt;form action="/submit" method="post" novalidate&gt;
+            &lt;fieldset&gt;
+                &lt;legend&gt;Personal Information&lt;/legend&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+                    &lt;input type="text" id="name" name="name" required minlength="3"&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="email"&gt;Email:&lt;/label&gt;
+                    &lt;input type="email" id="email" name="email" required&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="password"&gt;Password:&lt;/label&gt;
+                    &lt;input type="password" id="password" name="password" 
+                           required pattern=".{8,}" title="8 characters minimum"&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="age"&gt;Age:&lt;/label&gt;
+                    &lt;input type="number" id="age" name="age" min="18" max="99"&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label&gt;Gender:&lt;/label&gt;
+                    &lt;input type="radio" id="male" name="gender" value="male"&gt;
+                    &lt;label for="male"&gt;Male&lt;/label&gt;
+                    
+                    &lt;input type="radio" id="female" name="gender" value="female"&gt;
+                    &lt;label for="female"&gt;Female&lt;/label&gt;
+                &lt;/div&gt;
+                
+                &lt;div&gt;
+                    &lt;label for="bio"&gt;Biography:&lt;/label&gt;
+                    &lt;textarea id="bio" name="bio" rows="4"&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+            &lt;/fieldset&gt;
+        &lt;/form&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="semantic">
+                        <h2>Semantic HTML5 Elements</h2>
+                        
+                        <div class="example">
+                            <pre><code>&lt;header&gt;
+            &lt;h1&gt;Website Title&lt;/h1&gt;
+            &lt;nav&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+        &lt;/header&gt;
+        
+        &lt;main&gt;
+            &lt;article&gt;
+                &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+                &lt;p&gt;Article content...&lt;/p&gt;
+            &lt;/article&gt;
+            
+            &lt;aside&gt;
+                &lt;h3&gt;Related Links&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;Related Article 1&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/aside&gt;
+        &lt;/main&gt;
+        
+        &lt;footer&gt;
+            &lt;p&gt;&copy; 2023 Company Name&lt;/p&gt;
+        &lt;/footer&gt;</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="media">
+                        <h2>Media Elements</h2>
+                        
+                        <div class="example">
+                            <h3>Audio:</h3>
+                            <pre><code>&lt;audio controls&gt;
+            &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+            &lt;source src="audio.ogg" type="audio/ogg"&gt;
+            Your browser does not support the audio element.
+        &lt;/audio&gt;</code></pre>
+                        </div>
+                        
+                        <div class="example">
+                            <h3>Video:</h3>
+                            <pre><code>&lt;video width="640" height="360" controls poster="preview.jpg"&gt;
+            &lt;source src="video.mp4" type="video/mp4"&gt;
+            &lt;source src="video.webm" type="video/webm"&gt;
+            Your browser does not support the video tag.
+        &lt;/video&gt;</code></pre>
+                        </div>
+                    </section>
+                `,
+            },
+            css: {
+                title: "CSS Complete Guide",
+                content: `
+                    <h1>Complete CSS Reference Guide</h1>
+                    
+                    <section class="intro">
+                        <h2>Introduction to CSS</h2>
+                        <p>CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation of HTML documents. It controls layout, colors, fonts, and other visual aspects.</p>
+                        
+                        <div class="note">
+                            <strong>CSS Version:</strong> The current standard is CSS3, which introduced features like animations, gradients, and responsive design capabilities.
+                        </div>
+                    </section>
+        
+                    <section class="basic-syntax">
+                        <h2>Basic CSS Syntax</h2>
+                        <pre><code>selector {
+            property: value;
+            property: value;
+        }</code></pre>
+        
+                        <div class="example">
+                            <h3>Working Example:</h3>
+                            <pre><code>/* Make all h1 elements red and centered */
+        h1 {
+            color: red;
+            text-align: center;
+        }
+        
+        /* Style elements with class "highlight" */
+        .highlight {
+            background-color: yellow;
+            padding: 10px;
+        }
+        
+        /* Style the element with id "main" */
+        #main {
+            width: 80%;
+            margin: 0 auto;
+        }</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="selectors">
+                        <h2>CSS Selectors</h2>
+                        
+                        <table>
+                            <tr>
+                                <th>Selector Type</th>
+                                <th>Example</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>Element</td>
+                                <td><code>p { }</code></td>
+                                <td>Selects all &lt;p&gt; elements</td>
+                            </tr>
+                            <tr>
+                                <td>Class</td>
+                                <td><code>.intro { }</code></td>
+                                <td>Selects all elements with class="intro"</td>
+                            </tr>
+                            <tr>
+                                <td>ID</td>
+                                <td><code>#header { }</code></td>
+                                <td>Selects the element with id="header"</td>
+                            </tr>
+                            <tr>
+                                <td>Attribute</td>
+                                <td><code>[type="text"] { }</code></td>
+                                <td>Selects elements with type="text"</td>
+                            </tr>
+                            <tr>
+                                <td>Descendant</td>
+                                <td><code>div p { }</code></td>
+                                <td>Selects all &lt;p&gt; elements inside &lt;div&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Child</td>
+                                <td><code>ul > li { }</code></td>
+                                <td>Selects direct child &lt;li&gt; elements of &lt;ul&gt;</td>
+                            </tr>
+                            <tr>
+                                <td>Pseudo-class</td>
+                                <td><code>a:hover { }</code></td>
+                                <td>Selects links on mouse hover</td>
+                            </tr>
+                        </table>
+                        
+                        <div class="example">
+                            <h3>Advanced Selector Examples:</h3>
+                            <pre><code>/* Selects the first child of each list */
+        ul li:first-child {
+            font-weight: bold;
+        }
+        
+        /* Selects every even table row */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Selects all input elements except submit buttons */
+        input:not([type="submit"]) {
+            border: 1px solid #ccc;
+        }</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="box-model">
+                        <h2>CSS Box Model</h2>
+                        <p>Every element is a rectangular box with these properties:</p>
+                        
+                        <div class="example">
+                            <pre><code>.box {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 30px;
+            background-color: lightblue;
+        }</code></pre>
+                        </div>
+                        
+                        <ul>
+                            <li><strong>Content:</strong> The actual content (width × height)</li>
+                            <li><strong>Padding:</strong> Space between content and border</li>
+                            <li><strong>Border:</strong> Surrounds the padding</li>
+                            <li><strong>Margin:</strong> Space outside the border</li>
+                        </ul>
+                        
+                        <div class="note">
+                            <strong>Box-Sizing:</strong> Use <code>box-sizing: border-box</code> to include padding and border in element's total width/height.
+                        </div>
+                    </section>
+        
+                    <section class="text-properties">
+                        <h2>Text and Font Properties</h2>
+                        
+                        <div class="example">
+                            <pre><code>body {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            text-decoration: none;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }</code></pre>
+                        </div>
+                        
+                        <table>
+                            <tr>
+                                <th>Property</th>
+                                <th>Common Values</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>font-family</td>
+                                <td>Arial, Helvetica, sans-serif</td>
+                                <td>Specifies font stack</td>
+                            </tr>
+                            <tr>
+                                <td>font-size</td>
+                                <td>16px, 1em, 1rem, 100%</td>
+                                <td>Sets text size</td>
+                            </tr>
+                            <tr>
+                                <td>font-weight</td>
+                                <td>normal, bold, 400, 700</td>
+                                <td>Sets thickness of characters</td>
+                            </tr>
+                            <tr>
+                                <td>text-align</td>
+                                <td>left, right, center, justify</td>
+                                <td>Horizontal alignment</td>
+                            </tr>
+                            <tr>
+                                <td>line-height</td>
+                                <td>1.5, 24px, normal</td>
+                                <td>Space between lines</td>
+                            </tr>
+                        </table>
+                    </section>
+        
+                    <section class="layout">
+                        <h2>Layout Properties</h2>
+                        
+                        <h3>Display Property</h3>
+                        <div class="example">
+                            <pre><code>/* Block elements take full width */
+        .block {
+            display: block;
+        }
+        
+        /* Inline elements flow like text */
+        .inline {
+            display: inline;
+        }
+        
+        /* Combines block and inline features */
+        .inline-block {
+            display: inline-block;
+        }
+        
+        /* Removes element from flow */
+        .hidden {
+            display: none;
+        }</code></pre>
+                        </div>
+                        
+                        <h3>Positioning</h3>
+                        <div class="example">
+                            <pre><code>/* Normal document flow */
+        .static {
+            position: static;
+        }
+        
+        /* Relative to normal position */
+        .relative {
+            position: relative;
+            top: 10px;
+            left: 20px;
+        }
+        
+        /* Absolute to nearest positioned ancestor */
+        .absolute {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        
+        /* Fixed to viewport */
+        .fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        /* Sticky positioning */
+        .sticky {
+            position: sticky;
+            top: 0;
+        }</code></pre>
+                        </div>
+                    </section>
+        
+                    <section class="flexbox">
+                        <h2>Flexbox Layout</h2>
+                        <p>One-dimensional layout model for arranging items in rows or columns.</p>
+                        
+                        <div class="example">
+                            <pre><code>.container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .item {
+            flex: 1;
+            order: 2;
+            align-self: flex-end;
+        }</code></pre>
+                        </div>
+                        
+                        <h3>Main Flexbox Properties:</h3>
+                        <ul>
+                            <li><strong>flex-direction:</strong> row | row-reverse | column | column-reverse</li>
+                            <li><strong>justify-content:</strong> flex-start | flex-end | center | space-between | space-around</li>
+                            <li><strong>align-items:</strong> stretch | flex-start | flex-end | center | baseline</li>
+                            <li><strong>flex-wrap:</strong> nowrap | wrap | wrap-reverse</li>
+                            <li><strong>flex:</strong> Shorthand for flex-grow, flex-shrink, flex-basis</li>
+                        </ul>
+                    </section>
+        
+                    <section class="grid">
+                        <h2>CSS Grid Layout</h2>
+                        <p>Two-dimensional grid-based layout system.</p>
+                        
+                        <div class="example">
+                            <pre><code>.container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto;
+            gap: 10px;
+            grid-template-areas:
+                "header header header"
+                "sidebar main aside"
+                "footer footer footer";
+        }
+        
+        .item-a {
+            grid-area: header;
+        }
+        .item-b {
+            grid-column: span 2;
+            grid-row: 2 / 4;
+        }</code></pre>
+                        </div>
+                        
+                        <h3>Key Grid Properties:</h3>
+                        <ul>
+                            <li><strong>grid-template-columns/rows:</strong> Defines track sizes</li>
+                            <li><strong>grid-template-areas:</strong> Defines template using named areas</li>
+                            <li><strong>gap:</strong> Space between grid items (formerly grid-gap)</li>
+                            <li><strong>grid-column/row:</strong> Positions items on grid</li>
+                            <li><strong>fr unit:</strong> Fractional unit for flexible sizing</li>
+                        </ul>
+                    </section>
+        
+                    <section class="responsive">
+                        <h2>Responsive Design</h2>
+                        
+                        <h3>Media Queries</h3>
+                        <div class="example">
+                            <pre><code>/* Mobile-first approach */
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
+        
+        /* Tablet */
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* Desktop */
+        @media (min-width: 992px) {
+            .container {
+                width: 970px;
+            }
+        }
+        
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }</code></pre>
+                        </div>
+                        
+                        <h3>Viewport Meta Tag</h3>
+                        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    </section>
+        
+                    <section class="animations">
+                        <h2>Transitions and Animations</h2>
+                        
+                        <h3>Transitions</h3>
+                        <div class="example">
+                            <pre><code>.button {
+            background-color: blue;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+        
+        .button:hover {
+            background-color: darkblue;
+            transform: scale(1.05);
+        }</code></pre>
+                        </div>
+                        
+                        <h3>Keyframe Animations</h3>
+                        <div class="example">
+                            <pre><code>@keyframes slidein {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        .element {
+            animation: slidein 0.5s ease-out forwards;
+        }</code></pre>
+                        </div>
+                    </section>
+                `,
+            },
+            js: {
+                title: "JavaScript Comprehensive Notes",
+                content: `
+                        <h2>Introduction to JavaScript</h2>
+                        <p>JavaScript is a scripting language used to create dynamic web content.</p>
+                        
+                        <h3>Basic Syntax</h3>
+                        <pre><code>// Variable declaration
+            let message = "Hello";
+            const PI = 3.14;
+            
+            // Function
+            function greet(name) {
+                return "Hello " + name;
+            }</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>Variables:</strong> let, const, var</li>
+                            <li><strong>Data Types:</strong> String, Number, Boolean, Object, Array</li>
+                            <li><strong>Functions:</strong> Declaration, expression, arrow</li>
+                            <li><strong>DOM Manipulation:</strong> Selecting and modifying elements</li>
+                            <li><strong>ES6+ Features:</strong> Classes, modules, promises, async/await</li>
+                        </ul>
+                        
+                        <h3>Common Methods</h3>
+                        <ul>
+                            <li>Array: map(), filter(), reduce(), forEach()</li>
+                            <li>String: split(), join(), substring(), toUpperCase()</li>
+                            <li>Object: keys(), values(), entries()</li>
+                        </ul>
+                    `
+            },
+            python: {
+                title: "Python Programming Guide",
+                content: `
+                        <h2>Introduction to Python</h2>
+                        <p>Python is an interpreted, high-level programming language.</p>
+                        
+                        <h3>Basic Syntax</h3>
+                        <pre><code># Variable assignment
+            message = "Hello World"
+            
+            # Function definition
+            def greet(name):
+                return f"Hello {name}"
+            
+            # List comprehension
+            squares = [x**2 for x in range(10)]</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>Data Structures:</strong> Lists, tuples, dictionaries, sets</li>
+                            <li><strong>Control Flow:</strong> if-else, for/while loops</li>
+                            <li><strong>Functions:</strong> Parameters, return values, lambda</li>
+                            <li><strong>OOP:</strong> Classes, inheritance, polymorphism</li>
+                            <li><strong>Modules:</strong> Importing and creating modules</li>
+                        </ul>
+                        
+                        <h3>Popular Libraries</h3>
+                        <ul>
+                            <li>Web: Django, Flask</li>
+                            <li>Data Science: NumPy, Pandas, Matplotlib</li>
+                            <li>AI: TensorFlow, PyTorch</li>
+                        </ul>
+                    `
+            },
+            java: {
+                title: "Java Programming Reference",
+                content: `
+                        <h2>Introduction to Java</h2>
+                        <p>Java is a class-based, object-oriented programming language.</p>
+                        
+                        <h3>Basic Syntax</h3>
+                        <pre><code>// Class definition
+            public class Main {
+                // Main method
+                public static void main(String[] args) {
+                    System.out.println("Hello World");
+                }
+            }</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>OOP Principles:</strong> Encapsulation, Inheritance, Polymorphism</li>
+                            <li><strong>Data Types:</strong> Primitives and objects</li>
+                            <li><strong>Collections:</strong> ArrayList, HashMap, HashSet</li>
+                            <li><strong>Exception Handling:</strong> try-catch-finally</li>
+                            <li><strong>Multithreading:</strong> Thread class, Runnable interface</li>
+                        </ul>
+                        
+                        <h3>Important Features</h3>
+                        <ul>
+                            <li>Platform independence (JVM)</li>
+                            <li>Automatic memory management (Garbage Collection)</li>
+                            <li>Rich standard library</li>
+                            <li>Strong type system</li>
+                        </ul>
+                    `
+            },
+            sql: {
+                title: "SQL Database Guide",
+                content: `
+                        <h2>Introduction to SQL</h2>
+                        <p>SQL (Structured Query Language) is used to manage relational databases.</p>
+                        
+                        <h3>Basic Commands</h3>
+                        <pre><code>-- Create table
+            CREATE TABLE users (
+                id INT PRIMARY KEY,
+                name VARCHAR(100),
+                email VARCHAR(100)
+            );
+            
+            -- Insert data
+            INSERT INTO users VALUES (1, 'John', 'john@example.com');
+            
+            -- Query data
+            SELECT * FROM users WHERE id = 1;</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>CRUD Operations:</strong> CREATE, READ, UPDATE, DELETE</li>
+                            <li><strong>Joins:</strong> INNER, LEFT, RIGHT, FULL</li>
+                            <li><strong>Constraints:</strong> PRIMARY KEY, FOREIGN KEY, UNIQUE</li>
+                            <li><strong>Indexes:</strong> Improve query performance</li>
+                            <li><strong>Transactions:</strong> ACID properties</li>
+                        </ul>
+                        
+                        <h3>Popular Databases</h3>
+                        <ul>
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>SQL Server</li>
+                            <li>Oracle</li>
+                            <li>SQLite</li>
+                        </ul>
+                    `
+            },
+            php: {
+                title: "PHP Web Development",
+                content: `
+                        <h2>Introduction to PHP</h2>
+                        <p>PHP is a server-side scripting language designed for web development.</p>
+                        
+                        <h3>Basic Syntax</h3>
+                        <pre><code>&lt;?php
+            // Variable
+            $message = "Hello World";
+            
+            // Function
+            function greet($name) {
+                return "Hello " . $name;
+            }
+            
+            // Database connection
+            $conn = new mysqli("localhost", "user", "pass", "db");
+            ?&gt;</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>Superglobals:</strong> $_GET, $_POST, $_SESSION</li>
+                            <li><strong>Forms Handling:</strong> Processing user input</li>
+                            <li><strong>Database Interaction:</strong> MySQLi, PDO</li>
+                            <li><strong>Sessions & Cookies:</strong> User state management</li>
+                            <li><strong>Security:</strong> Prepared statements, input validation</li>
+                        </ul>
+                        
+                        <h3>Popular Frameworks</h3>
+                        <ul>
+                            <li>Laravel</li>
+                            <li>Symfony</li>
+                            <li>CodeIgniter</li>
+                        </ul>
+                    `
+            },
+            cpp: {
+                title: "C++ Programming Reference",
+                content: `
+                        <h2>Introduction to C++</h2>
+                        <p>C++ is a general-purpose programming language with object-oriented features.</p>
+                        
+                        <h3>Basic Syntax</h3>
+                        <pre><code>#include &lt;iostream&gt;
+            using namespace std;
+            
+            int main() {
+                // Output
+                cout << "Hello World" << endl;
+                
+                // Variable
+                int number = 42;
+                
+                return 0;
+            }</code></pre>
+                        
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>Memory Management:</strong> Pointers, references</li>
+                            <li><strong>OOP:</strong> Classes, inheritance, polymorphism</li>
+                            <li><strong>Templates:</strong> Generic programming</li>
+                            <li><strong>STL:</strong> Containers, algorithms, iterators</li>
+                            <li><strong>Exception Handling:</strong> try-catch</li>
+                        </ul>
+                        
+                        <h3>Important Features</h3>
+                        <ul>
+                            <li>Low-level memory access</li>
+                            <li>High performance</li>
+                            <li>Rich standard library (STL)</li>
+                            <li>Multiple inheritance</li>
+                            <li>Operator overloading</li>
+                        </ul>
+                    `
+            }
+        };
+
+        let currentOpenSubject = null;
+
+        function openNote(subject) {
+            // Close previously opened notes if any
+            if (currentOpenSubject) {
+                document.querySelector(`.${currentOpenSubject}`).classList.remove('active-subject');
+                document.getElementById(`${currentOpenSubject}-notes`).style.display = 'none';
+            }
+
+            // If clicking the same subject, just close it
+            if (currentOpenSubject === subject) {
+                currentOpenSubject = null;
+                return;
+            }
+
+            // Open new notes
+            currentOpenSubject = subject;
+            document.querySelector(`.${subject}`).classList.add('active-subject');
+
+            const notesContainer = document.getElementById(`${subject}-notes`);
+            notesContainer.innerHTML = `
+                <span class="close-btn" onclick="closeNotes('${subject}')">×</span>
+                <h2>${notesContent[subject].title}</h2>
+                ${notesContent[subject].content}
+            `;
+            notesContainer.style.display = 'block';
+        }
+
+        function closeNotes(subject) {
+            document.querySelector(`.${subject}`).classList.remove('active-subject');
+            document.getElementById(`${subject}-notes`).style.display = 'none';
+            currentOpenSubject = null;
+        }
+    </script>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">C<sup>4</sup>C0DE®</div>
+        <nav>
+            <a href="index.html">HOME</a>
+            <a href="#">Tutorials</a>
+            <a href="#">Exercises</a>
+            <a href="#">Certificates</a>
+            <a href="LOGIN.HTML">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Subjects Container -->
+    <div class="subjects-container">
+        <div class="subject-box html" onclick="openNote('html')">HTML</div>
+        <div class="subject-box css" onclick="openNote('css')">CSS</div>
+        <div class="subject-box js" onclick="openNote('js')">JavaScript</div>
+        <div class="subject-box python" onclick="openNote('python')">Python</div>
+        <div class="subject-box java" onclick="openNote('java')">Java</div>
+        <div class="subject-box sql" onclick="openNote('sql')">SQL</div>
+        <div class="subject-box php" onclick="openNote('php')">PHP</div>
+        <div class="subject-box cpp" onclick="openNote('cpp')">C++</div>
+    </div>
+
+    <!-- Notes Containers (initially hidden) -->
+    <div id="html-notes" class="notes-container"></div>
+    <div id="css-notes" class="notes-container"></div>
+    <div id="js-notes" class="notes-container"></div>
+    <div id="python-notes" class="notes-container"></div>
+    <div id="java-notes" class="notes-container"></div>
+    <div id="sql-notes" class="notes-container"></div>
+    <div id="php-notes" class="notes-container"></div>
+    <div id="cpp-notes" class="notes-container"></div>
+    <script>
+        // Automatically open the notes based on URL hash when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there's a hash in the URL
+            const subject = window.location.hash.substring(1);
+
+            if (subject && notesContent[subject]) {
+                openNote(subject);
+
+                // Scroll to the notes container for better UX
+                setTimeout(() => {
+                    document.getElementById(`${subject}-notes`).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        });
+
+        // Rest of your existing JavaScript...
+    </script>
+
+
+</body>
+
+</html>

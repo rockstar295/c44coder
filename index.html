@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My C4coder - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at center, #000000 0%, #0a0a2e 70%, #1a1a4a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Header */
+        
+        header {
+            background: linear-gradient(145deg, #0e0f0f, #131414);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        /* Welcome Section */
+        
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .welcome-container {
+                flex-direction: row;
+                align-items: center;
+                padding: 50px;
+            }
+        }
+        
+        .welcome-text {
+            flex: 1;
+            text-align: left;
+            padding-right: 0;
+            margin-bottom: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .welcome-text {
+                padding-right: 50px;
+                margin-bottom: 0;
+            }
+        }
+        
+        #typing-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #dcebe5;
+            display: inline-block;
+            border-right: 3px solid black;
+            padding-right: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            #typing-text {
+                font-size: 40px;
+            }
+        }
+        
+        .ai-section {
+            flex: 1;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .ai-section {
+                text-align: right;
+                margin-top: 0;
+                padding-left: 50px;
+            }
+        }
+        
+        .ai-text {
+            font-size: 20px;
+            color: #78b89f;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        @media (min-width: 768px) {
+            .ai-text {
+                font-size: 24px;
+            }
+        }
+        
+        .ai-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #05144e, #233658);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            box-shadow: 0 0 20px rgba(120, 184, 159, 0.6);
+        }
+        
+        @media (min-width: 768px) {
+            .ai-image {
+                width: 200px;
+                height: 200px;
+                font-size: 20px;
+                margin-left: auto;
+            }
+        }
+        /* Search Container */
+        
+        .search-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+        
+        .search-bar {
+            padding: 12px 15px;
+            border-radius: 20px;
+            border: none;
+            width: 100%;
+            max-width: 500px;
+            outline: none;
+            background: rgba(35, 40, 51, 0.9);
+            color: #eff3f5;
+            font-size: 16px;
+        }
+        /* Subjects Container */
+        
+        .subjects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            perspective: 1000px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            max-width: 1200px;
+        }
+        
+        .subject-box {
+            height: 270px;
+            background: linear-gradient(145deg, #05144e, #233658);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), inset -3px -3px 5px rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .subject-box a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        /* Floating Animation */
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateY(5deg);
+            }
+        }
+        /* Hover Effect for 3D Pop-up */
+        
+        .subject-box:hover {
+            transform: translateY(-10px) rotateY(10deg) scale(1.05);
+            background: linear-gradient(200deg, #2f3138, #182a4d);
+            box-shadow: 0 15px 30px rgba(28, 27, 109, 0.6);
+            color: #e4f7ef;
+            animation: none;
+        }
+        /* Glow Effect on Hover */
+        
+        .subject-box:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            background: radial-gradient(circle at center, rgba(120, 184, 159, 0.4) 0%, transparent 70%);
+            z-index: -1;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px -5px #78b89f;
+            }
+            to {
+                box-shadow: 0 0 20px 5px #78b89f;
+            }
+        }
+        /* Sequential Animation Delay */
+        
+        .subject-box:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .subject-box:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .subject-box:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .subject-box:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        .subject-box:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+        
+        .subject-box:nth-child(6) {
+            animation-delay: 1.0s;
+        }
+        
+        .subject-box:nth-child(7) {
+            animation-delay: 1.2s;
+        }
+        
+        .subject-box:nth-child(8) {
+            animation-delay: 1.4s;
+        }
+        /* Footer */
+        
+        footer {
+            background: linear-gradient(145deg, #0e0f0f, #131414);
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            color: #a8c7b8;
+            margin-top: 20px;
+        }
+        /* Developer Info */
+        
+        .dev-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            height: 400px;
+            gap: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .mypf {
+            height: auto;
+            width: 50%;
+            border-color: #a8c7b8;
+            border: 6px;
+            align-items: center;
+        }
+        
+        .dev-info h3 {
+            color: #78b89f;
+            margin-bottom: 10px;
+        }
+        
+        .dev-info h4 {
+            color: #56606d;
+            margin-bottom: 10px;
+        }
+        
+        .dev-info p {
+            color: #a8c7b8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        /* Stars Background */
+        
+        .star {
+            position: absolute;
+            background-color: rgb(211, 120, 34);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .abweb {
+            height: auto;
+            width: 50%;
+            border: 6px;
+            border-color: #dcebe5;
+            align-items: center;
+            margin: 10px;
+            background: #000;
+        }
+        
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+            background: #dfebe6;
+        }
+        
+        img:hover {
+            width: 60px;
+            height: 60px;
+            border-radius: 100px;
+            background: #dfebe6;
+        }
+        
+        .loo {
+            width: 50%;
+            flex-direction: row;
+            margin: 4px;
+            display: flex;
+            flex-direction: column;
+            margin-left: 80px;
+            gap: 50px;
+            padding-top: 3px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">C<sup>4</sup>C0DE®</div>
+        <nav>
+            <a href="#">Tutorials</a>
+            <a href="#">Exercises</a>
+            <a href="#">Certificates</a>
+            <a href="LOGIN.HTML">Sign Up</a>
+        </nav>
+    </header>
+
+    <!-- Welcome and AI Section -->
+    <div class="welcome-container">
+        <div class="welcome-text">
+            <h1 id="typing-text"></h1>
+            <p style="color: #a8c7b8; font-size: 18px;">Your one-stop destination for coding tutorials and resources.</p>
+        </div>
+        <div class="ai-section">
+            <div class="ai-text">Powered by AI Technology</div>
+            <div class="ai-image">AI Assistant</div>
+        </div>
+    </div>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search in notes...">
+    </div>
+
+    <!-- Subject Boxes with Animation -->
+    <div class="subjects-container">
+        <div class="subject-box html"><a href="notes.html#html">HTML</a></div>
+        <div class="subject-box css"><a href="notes.html#css">CSS</a></div>
+        <div class="subject-box js"><a href="notes.html#js">JavaScript</a></div>
+        <div class="subject-box python"><a href="notes.html#python">Python</a></div>
+        <div class="subject-box java"><a href="notes.html#java">Java</a></div>
+        <div class="subject-box sql"><a href="notes.html#sql">SQL</a></div>
+        <div class="subject-box php"><a href="notes.html#php">PHP</a></div>
+        <div class="subject-box cpp"><a href="notes.html#cpp">C++</a></div>
+    </div>
+
+    <!-- Developer Info Section -->
+    <div class="dev-info">
+        <div clas="mypf">
+
+            <h4>about website creator</h4>
+
+            <h4>GAURAV JANGRA</h4>
+            <p>
+                <BR> BCA 2ND STUDENT MY FIRST PROJECT THIS WEB SITE BUILD BY FULLY AI HELP
+                <BR>
+        </div>
+
+        <div class="loo">
+
+            <div>
+                <a href=""><img src="fac.png"></a>
+            </div>
+            <div>
+                <a href=""><img src="git.png"></a>
+            </div>
+            <div>
+                <a href=""><img src="link.png"></a>
+            </div>
+            <div>
+                <a href=""><img src="ints.png"></a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- Footer with Social Links -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/rockstar295" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="gauravjangra295@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/yourhandle" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+
+        <p class="footer-text">© 2023 C4C0DE. All rights reserved.</p>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Create random stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random size between 1px to 3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+
+                // Random position
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+
+                // Random animation duration
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+
+                body.appendChild(star);
+            }
+        });
+
+        // Typing Effect Function
+        const text = "Welcome to My C4coder.....";
+        let index = 0;
+        const speed = 100; // Speed of typing
+
+        function typeEffect() {
+            if (index < text.length) {
+                document.getElementById("typing-text").textContent += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, speed);
+            }
+        }
+
+        window.onload = function() {
+            typeEffect();
+
+            // Add initial animation class to subject boxes
+            const boxes = document.querySelectorAll('.subject-box');
+            boxes.forEach(box => {
+                box.classList.add('animated');
+            });
+        };
+
+        // Function to Open Note Pages
+        function openNote(subject) {
+            window.location.href = `notes/${subject}.html`;
+        }
+    </script>
+</body>
+
+</html>
